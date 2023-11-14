@@ -117,7 +117,7 @@ public class SettingsForm extends javax.swing.JDialog {
                 Properties properties = new Properties();
 
                
-                FileOutputStream out=new FileOutputStream("config/DBconfig.properties");
+                FileOutputStream out=new FileOutputStream("src/main/java/resources/configuration/DBconfig.properties");
                 properties.setProperty("DB_NAME", url);
                 properties.setProperty("USER", user);
                 properties.setProperty("PASSWORD", password);

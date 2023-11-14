@@ -31,7 +31,7 @@ public class DBConnectionFactory {
     public Connection getConnection() throws Exception {
         if (connection == null || connection.isClosed()) {
             Properties properties = new Properties();
-            properties.load(new FileInputStream("config/DBconfig.properties"));
+            properties.load(new FileInputStream("src/main/java/resources/configuration/DBconfig.properties"));
             String url = "jdbc:mysql://localhost:3306/" + properties.getProperty("DB_NAME");
             String user = properties.getProperty("USER");
             String password = properties.getProperty("PASSWORD");
