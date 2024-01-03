@@ -5,28 +5,36 @@
 package org.java.movies.app.common.communication;
 
 
-import java.io.ObjectInputStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 import java.net.Socket;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 
 
 /**
  *
  * @author Administrator
  */
-public class Reciever {
-    Socket socket;
-
+public class Reciever<T> {
+    private Socket socket;
+    private Gson gson;
+    
     public Reciever(Socket socket) {
         this.socket = socket;
+        gson=new GsonBuilder().create();
     }
 
-public Object recieve() throws Exception{
+public T recieve(Class<T> clazz) throws Exception{
         try {
-            ObjectInputStream in=new ObjectInputStream(socket.getInputStream());
-            return in.readObject();
+        	BufferedReader in=new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            return gson.fromJson(in.readLine(), clazz);
         } catch (Exception ex) {
-           // ex.printStackTrace();
-            throw new Exception("Greška kod prijema objekta! ");
+            ex.printStackTrace();
+            throw new Exception("Greška kod prijema objekta! "+ex.getMessage());
         }
 }    
     

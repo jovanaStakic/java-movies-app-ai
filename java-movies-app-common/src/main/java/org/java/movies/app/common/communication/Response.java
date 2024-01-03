@@ -6,37 +6,45 @@ package org.java.movies.app.common.communication;
 
 import java.io.Serializable;
 
+import org.java.movies.app.common.communication.MyException;
+
 /**
  *
  * @author Administrator
  */
 public class Response implements Serializable{
-    private Object result;
-    private Exception exception;
+	 private Object result;
+	 private MyException exception;
 
-    public Response() {
-    }
+	    public Response() {
+	    }
 
-    public Response(Object result, Exception exception) {
-        this.result = result;
-        this.exception = exception;
-    }
 
-    public Exception getException() {
-        return exception;
-    }
+	    public Response(Object result, MyException exception) {
+			super();
+			this.result = result;
+			this.exception = exception;
+		}
 
-    public void setException(Exception exception) {
-        this.exception = exception;
-    }
 
-    public Object getResult() {
-        return result;
-    }
+		public MyException getException() {
+			return exception;
+		}
 
-    public void setResult(Object result) {
-        this.result = result;
-    }
+
+		public void setException(MyException exception) {
+			this.exception = exception;
+		}
+
+
+		public Object getResult() {
+	        return result;
+	    }
+
+	    public void setResult(Object result) {
+	        this.result = result;
+	    }
+	    
     
     
 }

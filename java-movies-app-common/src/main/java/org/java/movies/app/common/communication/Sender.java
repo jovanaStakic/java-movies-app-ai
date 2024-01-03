@@ -5,26 +5,32 @@
 package org.java.movies.app.common.communication;
 
 
-import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.net.Socket;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 
 /**
  *
  * @author Administrator
  */
-public class Sender {
+public class Sender<T> {
     private Socket socket;
-
+    private Gson gson;
+    
     public Sender(Socket socket) {
         this.socket = socket;
+        this.gson=new GsonBuilder().create();
     }
     
-    public void send(Object obj) throws Exception{
+    public void send(T obj) throws Exception{
         try {
-            ObjectOutputStream out=new ObjectOutputStream(socket.getOutputStream());
-            out.writeObject(obj);
-            out.flush();
+        	PrintWriter out=new PrintWriter(socket.getOutputStream());
+            out.println(gson.toJson(obj));
+            //System.out.print(gson.toJson(obj));
+            out.flush(); 
         } catch (Exception ex) {
             ex.printStackTrace();
             throw new Exception("Greška kod slanja objekta!\n"+ex.getMessage());

@@ -129,6 +129,7 @@ public class Reziser implements Serializable,GenericEntity{
     @Override
     public List<GenericEntity> resultSetToList(ResultSet rs) {
         List<GenericEntity> reziseri=new ArrayList<>();
+        SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
         try {
             while(rs.next()){
                 Reziser r=new Reziser(rs.getLong(1), rs.getString(2), rs.getDate(3), rs.getString(4));

@@ -37,6 +37,11 @@ public class Request implements Serializable{
     public void setArgument(Object argument) {
         this.argument = argument;
     }
+
+	@Override
+	public String toString() {
+		return "Request [argument=" + argument + ", operation=" + operation + "]";
+	}
     
     
     

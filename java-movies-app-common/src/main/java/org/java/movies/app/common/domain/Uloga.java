@@ -14,7 +14,7 @@ import java.util.Objects;
 public class Uloga implements Serializable{
     
     private Glumac glumac;
-    private Film film;
+    private transient Film film;
     private String nazivUloge;
 
     public Uloga() {
